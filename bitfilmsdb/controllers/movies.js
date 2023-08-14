@@ -1,10 +1,10 @@
-const Card = require("../models/card");
+const Movie = require("../models/card");
 const CustomError = require("../errors/customError");
 
 const getMovies = async (req, res, next) => {
   try {
-    const cards = await Card.find({});
-    res.send(cards);
+    const movies = await Movie.find({});
+    res.send(movies);
   } catch (error) {
     next(error);
   }
@@ -13,8 +13,8 @@ const getMovies = async (req, res, next) => {
 const createMovie = async (req, res, next) => {
   try {
     const { country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId  } = req.body;
-    const card = await Card.create({ name, link, owner: req.user._id });
-    res.status(201).send(card);
+    const movie = await Movie.create({ country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId});
+    res.status(201).send(movie);
   } catch (error) {
     next(error);
   }
@@ -22,15 +22,15 @@ const createMovie = async (req, res, next) => {
 
 const deleteMovie = async (req, res, next) => {
   try {
-    const card = await Card.findById(req.params.cardId);
+    const movie = await Movie.findById(req.params.cardId);
     const userId = req.user._id;
-    if (!card) {
-      throw new CustomError(404, "Карточка не найдена");
+    if (!movie) {
+      throw new CustomError(404, "Фильм не найден");
     }
-    if (card.owner.toString() !== userId) {
+    if (movie.owner.toString() !== userId) {
       throw new CustomError(403, "нет прав");
     }
-    await card.deleteOne();
+    await movie.deleteOne();
     res.send({ message: "Удалено" });
   } catch (error) {
     next(error);
@@ -38,5 +38,5 @@ const deleteMovie = async (req, res, next) => {
 };
 
 module.exports = {
-  getCards, createCard, deleteCard, addLikeCard, deleteLikeCard,
+  getMovies, createMovie, deleteMovie
 };

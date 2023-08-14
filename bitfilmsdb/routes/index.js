@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const cardsRouter = require("./cards");
+const cardsRouter = require("./movies");
 const usersRouter = require("./users");
 
 const CustomError = require("../errors/customError");
