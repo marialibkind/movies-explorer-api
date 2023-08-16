@@ -16,5 +16,4 @@ usersRouter.get("/users/me", auth, getInforCurrentUser);
 
 usersRouter.patch("/users/me", auth, userUpdateValidation, setProfile);
 
-
 module.exports = usersRouter;

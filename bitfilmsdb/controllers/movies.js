@@ -1,4 +1,4 @@
-const Movie = require("../models/card");
+const Movie = require("../models/movies");
 const CustomError = require("../errors/customError");
 
 const getMovies = async (req, res, next) => {
@@ -12,8 +12,23 @@ const getMovies = async (req, res, next) => {
 
 const createMovie = async (req, res, next) => {
   try {
-    const { country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId  } = req.body;
-    const movie = await Movie.create({ country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId});
+    const {
+      country, director, duration, year, description, image,
+      trailer, nameRU, nameEN, thumbnail, movieId,
+    } = req.body;
+    const movie = await Movie.create({
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailer,
+      nameRU,
+      nameEN,
+      thumbnail,
+      movieId,
+    });
     res.status(201).send(movie);
   } catch (error) {
     next(error);
@@ -38,5 +53,5 @@ const deleteMovie = async (req, res, next) => {
 };
 
 module.exports = {
-  getMovies, createMovie, deleteMovie
+  getMovies, createMovie, deleteMovie,
 };

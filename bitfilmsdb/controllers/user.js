@@ -85,5 +85,5 @@ const getInforCurrentUser = async (req, res, next) => {
 };
 
 module.exports = {
-  getUsers, createUser, setProfile, setAvatar, getInforCurrentUser, login, logOut,
+  createUser, setProfile, getInforCurrentUser, login, logOut,
 };
