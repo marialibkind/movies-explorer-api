@@ -34,14 +34,14 @@ const logOut = async (req, res, next) => {
 const createUser = async (req, res, next) => {
   try {
     const {
-      name, about, avatar, email, password,
+      name,  email, password,
     } = req.body;
     const hashpass = await bcrypt.hash(password, 10);
     await User.create({
-      name, about, avatar, email, password: hashpass,
+      name, email, password: hashpass,
     });
     res.status(201).send({
-      name, about, avatar, email,
+      name, email,
     });
   } catch (error) {
     if (error.code === 11000) {
@@ -68,7 +68,12 @@ const setProfile = async (req, res, next) => {
       res.send(user);
     }
   } catch (error) {
-    next(error);
+    if (error.code === 11000) {
+      const error409 = new CustomError(409, "Почта Уже используется");
+      next(error409);
+    } else {
+      next(error);
+    }
   }
 };
 

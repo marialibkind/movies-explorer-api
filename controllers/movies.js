@@ -2,8 +2,9 @@ const Movie = require("../models/movies");
 const CustomError = require("../errors/customError");
 
 const getMovies = async (req, res, next) => {
+ const owner = req.user._id;
   try {
-    const movies = await Movie.find({});
+    const movies = await Movie.find({owner});
     res.send(movies);
   } catch (error) {
     next(error);
@@ -11,19 +12,21 @@ const getMovies = async (req, res, next) => {
 };
 
 const createMovie = async (req, res, next) => {
+  const owner = req.user._id;
   try {
     const {
       country, director, duration, year, description, image,
-      trailer, nameRU, nameEN, thumbnail, movieId,
+      trailerLink, nameRU, nameEN, thumbnail, movieId,
     } = req.body;
     const movie = await Movie.create({
+      owner,
       country,
       director,
       duration,
       year,
       description,
       image,
-      trailer,
+      trailerLink,
       nameRU,
       nameEN,
       thumbnail,
@@ -37,7 +40,7 @@ const createMovie = async (req, res, next) => {
 
 const deleteMovie = async (req, res, next) => {
   try {
-    const movie = await Movie.findById(req.params.cardId);
+    const movie = await Movie.findById(req.params.movieId);
     const userId = req.user._id;
     if (!movie) {
       throw new CustomError(404, "Фильм не найден");
