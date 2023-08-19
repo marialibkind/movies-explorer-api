@@ -7,13 +7,14 @@ const cors = require("cors");
 const router = require("./routes/index");
 const errorHandler = require("./middlewares/errorHandler");
 const { requestLogger, errorLogger } = require("./middlewares/loger");
+const { DEV_DB, PROD_DB, NODE_ENV } = process.env;
 
 const app = express();
 const { PORT = 3000 } = process.env;
 
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/mestodb", { family: 4 });
+mongoose.connect(NODE_ENV === "production" ? PROD_DB : DEV_DB, { family: 4 });
 
 app.use(requestLogger);
 app.use(cors({
