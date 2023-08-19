@@ -18,7 +18,7 @@ mongoose.connect(NODE_ENV === "production" ? PROD_DB : DEV_DB, { family: 4 });
 
 app.use(requestLogger);
 app.use(cors({
-  origin: "https://mesto-maria.nomoredomains.sbs",
+  origin: "diploma-marialibkind.nomoreparties.co",
   // origin: "http://localhost:3001",
   credentials: true,
 }));
