@@ -47,14 +47,12 @@ const createUser = async (req, res, next) => {
     if (error.code === 11000) {
       const error409 = new CustomError(409, "Почта Уже используется");
       next(error409);
-    } else  {
-      if (error.name = "ValidationError"){
+    } else if (error.name = "ValidationError") {
       const error400 = new CustomError(400, "Ошибка Валидации");
       next(error400);
     }
   }
-}
-}
+};
 
 const setProfile = async (req, res, next) => {
   try {
@@ -74,14 +72,12 @@ const setProfile = async (req, res, next) => {
     if (error.code === 11000) {
       const error409 = new CustomError(409, "Почта Уже используется");
       next(error409);
-    } else  {
-      if (error.name = "ValidationError") {
+    } else if (error.name = "ValidationError") {
       const error400 = new CustomError(400, "Ошибка Валидации");
       next(error400);
     }
   }
-}
-}
+};
 
 const getInforCurrentUser = async (req, res, next) => {
   try {
@@ -97,4 +93,4 @@ const getInforCurrentUser = async (req, res, next) => {
 
 module.exports = {
   createUser, setProfile, getInforCurrentUser, login, logOut,
-}
+};
