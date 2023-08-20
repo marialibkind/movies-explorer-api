@@ -38,6 +38,9 @@ const createMovie = async (req, res, next) => {
       const error400 = new CustomError(400, "Ошибка Валидации");
       next(error400);
     }
+    else {
+      next(error)
+      }
   }
 };
 
