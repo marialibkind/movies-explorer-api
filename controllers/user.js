@@ -53,7 +53,8 @@ const createUser = async (req, res, next) => {
       next(error400);
     }
   }
-};
+}
+}
 
 const setProfile = async (req, res, next) => {
   try {
@@ -79,7 +80,8 @@ const setProfile = async (req, res, next) => {
       next(error400);
     }
   }
-};
+}
+}
 
 const getInforCurrentUser = async (req, res, next) => {
   try {
@@ -95,4 +97,4 @@ const getInforCurrentUser = async (req, res, next) => {
 
 module.exports = {
   createUser, setProfile, getInforCurrentUser, login, logOut,
-};
+}
