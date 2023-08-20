@@ -2,9 +2,9 @@ const Movie = require("../models/movies");
 const CustomError = require("../errors/customError");
 
 const getMovies = async (req, res, next) => {
- const owner = req.user._id;
+  const owner = req.user._id;
   try {
-    const movies = await Movie.find({owner});
+    const movies = await Movie.find({ owner });
     res.send(movies);
   } catch (error) {
     next(error);
@@ -34,7 +34,7 @@ const createMovie = async (req, res, next) => {
     });
     res.status(201).send(movie);
   } catch (error) {
-     if (error.name = "ValidationError") {
+    if (error.name = "ValidationError") {
       const error400 = new CustomError(400, "Ошибка Валидации");
       next(error400);
     }

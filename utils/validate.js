@@ -1,7 +1,6 @@
 const { Joi, celebrate } = require("celebrate");
 const validator = require("valid-url");
 
-
 const movieValidation = celebrate({
   body: Joi.object().keys({
     nameRU: Joi.string().required()
@@ -46,11 +45,11 @@ const movieValidation = celebrate({
         "any.required": "Поле \"description\" должно быть заполнено",
       }),
     image: Joi.string().required().custom((value, helper) => {
-        if (!validator.isWebUri(value)) {
-          return helper.error("это не url");
-        }
-        return value;
-      }),
+      if (!validator.isWebUri(value)) {
+        return helper.error("это не url");
+      }
+      return value;
+    }),
     trailerLink: Joi.string().required().custom((value, helper) => {
       if (!validator.isWebUri(value)) {
         return helper.error("это не url");
@@ -97,7 +96,6 @@ const userIdValidation = celebrate({
     userId: Joi.string().required().length(24).hex(),
   }),
 });
-
 
 const userUpdateValidation = celebrate({
   body: Joi.object().keys({

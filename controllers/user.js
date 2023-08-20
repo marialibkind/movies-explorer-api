@@ -34,7 +34,7 @@ const logOut = async (req, res, next) => {
 const createUser = async (req, res, next) => {
   try {
     const {
-      name,  email, password,
+      name, email, password,
     } = req.body;
     const hashpass = await bcrypt.hash(password, 10);
     await User.create({
@@ -47,13 +47,13 @@ const createUser = async (req, res, next) => {
     if (error.code === 11000) {
       const error409 = new CustomError(409, "Почта Уже используется");
       next(error409);
-    } else if (error.name = "ValidationError") {
+    } else {
+      if (error.name = "ValidationError"){
       const error400 = new CustomError(400, "Ошибка Валидации");
       next(error400);
-    }
+      }
   }
 };
-
 
 const setProfile = async (req, res, next) => {
   try {
@@ -73,9 +73,11 @@ const setProfile = async (req, res, next) => {
     if (error.code === 11000) {
       const error409 = new CustomError(409, "Почта Уже используется");
       next(error409);
-    } else if (error.name = "ValidationError") {
+    } else {
+      if (error.name = "ValidationError"){
       const error400 = new CustomError(400, "Ошибка Валидации");
       next(error400);
+      }
     }
   }
 };

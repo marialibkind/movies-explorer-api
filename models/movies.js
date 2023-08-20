@@ -8,7 +8,7 @@ const movieSchema = new mongoose.Schema({
   },
   director: {
     type: String,
-    required: true
+    required: true,
   },
   duration: {
     required: true,
