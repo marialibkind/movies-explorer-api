@@ -49,7 +49,8 @@ const createUser = async (req, res, next) => {
     } else if (error.name === "ValidationError") {
       const error400 = new CustomError(400, "Ошибка Валидации");
       next(error400);
-    // } else {
+     } 
+    //else {
     //   next(error);
     // }
   }
@@ -76,7 +77,8 @@ const setProfile = async (req, res, next) => {
     } else if (error.name === "ValidationError") {
       const error400 = new CustomError(400, "Ошибка Валидации");
       next(error400);
-    // } else {
+     } 
+     //else {
     //   next(error);
     // }
   }
@@ -96,4 +98,5 @@ const getInforCurrentUser = async (req, res, next) => {
 
 module.exports = {
   createUser, setProfile, getInforCurrentUser, login, logOut,
-};
+}
+
