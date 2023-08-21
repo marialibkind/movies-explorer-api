@@ -47,12 +47,11 @@ const createUser = async (req, res, next) => {
       const error409 = new CustomError(409, "Почта Уже используется");
       next(error409);
     } else if (error.name === "ValidationError") {
-     
-       const error400 = new CustomError(400, "Ошибка Валидации");
-       next(error400);
-    } else {
-      next(error);
-    }
+      const error400 = new CustomError(400, "Ошибка Валидации");
+      next(error400);
+    // } else {
+    //   next(error);
+    // }
   }
 };
 
@@ -75,12 +74,11 @@ const setProfile = async (req, res, next) => {
       const error409 = new CustomError(409, "Почта Уже используется");
       next(error409);
     } else if (error.name === "ValidationError") {
-     
-       const error400 = new CustomError(400, "Ошибка Валидации");
-       next(error400);
-    } else {
-      next(error);
-    }
+      const error400 = new CustomError(400, "Ошибка Валидации");
+      next(error400);
+    // } else {
+    //   next(error);
+    // }
   }
 };
 
