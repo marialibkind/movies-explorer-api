@@ -48,11 +48,13 @@ const createUser = async (req, res, next) => {
       next(error409);
     } else if (error.name = "ValidationError") {
       next(new CustomError(400, "Ошибка Валидации"));
-      //const error400 = new CustomError(400, "Ошибка Валидации");
-      //next(error400);
-    }
+      // const error400 = new CustomError(400, "Ошибка Валидации");
+      // next(error400);
+    } else {
+      next(error)
+    };
   }
-  next(error);
+  
 };
 
 const setProfile = async (req, res, next) => {
@@ -75,10 +77,11 @@ const setProfile = async (req, res, next) => {
       next(error409);
     } else if (error.name = "ValidationError") {
       next(new CustomError(400, "Ошибка Валидации"));
-      //const error400 = new CustomError(400, "Ошибка Валидации");
-      //next(error400);
-    }
-    next(error);
+      // const error400 = new CustomError(400, "Ошибка Валидации");
+      // next(error400);
+    } else {
+      next(error)
+    };
   }
 };
 
