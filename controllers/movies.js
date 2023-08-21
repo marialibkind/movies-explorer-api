@@ -34,13 +34,13 @@ const createMovie = async (req, res, next) => {
     });
     res.status(201).send(movie);
   } catch (error) {
-    if (error.name = "ValidationError") {
+    if (error.name ==== "ValidationError") {
       next(new CustomError(400, "Ошибка Валидации"));
       // const error400 = new CustomError(400, "Ошибка Валидации");
       // next(error400);
     } else {
-      next(error)
-    };
+      next(error);
+    }
   }
 };
 
