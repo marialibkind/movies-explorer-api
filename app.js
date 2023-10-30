@@ -19,8 +19,8 @@ mongoose.connect(NODE_ENV === "production" ? PROD_DB : DEV_DB, { family: 4 });
 
 app.use(requestLogger);
 app.use(cors({
-  origin: "diploma-marialibkind.nomoreparties.co",
-  // origin: "http://localhost:3001",
+  origin: "diploma-marialibkind.nomoredomainsrocks.ru",
+  //  origin: "http://localhost:3001",
   credentials: true,
 }));
 app.use(cookieParser());
