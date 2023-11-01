@@ -27,7 +27,13 @@ const login = async (req, res, next) => {
 
 const logOut = async (req, res, next) => {
   try {
-    res.clearCookie("jwt").send({ message: "Кука успешно удалена." });
+    res
+      .clearCookie("jwt", {
+        httpOnly: true,
+        sameSite: "None",
+        secure: true,
+      })
+      .send({ message: "Кука успешно удалена." });
   } catch (err) {
     next(err);
   }
